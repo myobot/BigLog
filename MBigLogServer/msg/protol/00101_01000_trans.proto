@@ -1,0 +1,34 @@
+message SCLogPush {
+    option (msgid) = 101;
+	required string line 		= 1; // 一条log
+}
+message SCNewVersionPush {
+	option (msgid) = 102;
+	required string version 	= 1; // 新版本号
+	required string annotation	= 2; // 新版本注释
+}
+message CSVersionSend {
+	option (msgid) = 103;
+	required string version 	= 1; // 版本号
+}
+message CSFindLog{
+    option (msgid) = 104;
+    required int64 id               = 1; //id
+    required string sentence        = 2; //查找的关键词
+    required int32 orderModel       = 3; //查找顺序模式， 1=从前向后 2=从后向前
+    required int32 count            = 4; //查找的条数
+    required int32 totalCount       = 5; //在totalCount条Log中查找count条
+    required int32 matchCase        = 6; //是否区分大小写 1=是 2=否
+    required int32 wholeWords       = 7; //整个单词/句子 1=是 2=否
+    required int32 showRowNum       = 8; //显示行号 1=是 2=否
+    required int32 usePattern       = 9; //使用正则搜索 1=是 2=否
+}
+message SCFindLogPush{
+    option (msgid) = 105;
+    required int64 id               = 1; //id
+    required string answer          = 2; //结果
+}
+message SCFindLogFinish{
+    option (msgid) = 106;
+    required int64 id               = 1; //id
+}
